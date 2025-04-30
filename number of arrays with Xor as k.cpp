@@ -9,28 +9,20 @@ using namespace std;
 
 class Solution {
   public:
-    long subarrayXor(vector<int> &arr, int k) {
+    long subarrayXor(vector<int> &a, int k) {
         // code here
-        int n = arr.size();
-        
-        unordered_map<int, int>m;
-        int count =0;
-        int Xor = 0;
-        m[0]=1;
-        
-        for(int i=0;i<n;i++)
-        {
-            Xor = Xor^arr[i];
-            
-            int x = Xor^k;
-            if(m.find(x)!=m.end())
-            {
-                count+=m[x];
-            }
-            m[Xor]++;
+        int xr = 0;
+        map<int, int> mpp;
+        mpp[xr]++; // {0, 1}
+        int cnt = 0;
+        for (int i = 0; i < a.size(); i++) {
+            xr = xr ^ a[i];
+    // k
+            int x = xr ^ k;
+            cnt += mpp[x];
+            mpp[xr]++;
         }
-        
-        return count;
+        return cnt;
     }
 };
 
